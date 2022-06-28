@@ -2,7 +2,8 @@ FROM node:16-buster AS builder
 # copying only package{-lock}.json to make node_modules cachable
 RUN git clone https://github.com/bpatrik/pigallery2.git /build
 WORKDIR /build
-RUN npm install --unsafe-perm \
+RUN ln -s /usr/local/bin/node /usr/local/sbin/node \
+    && npm install --unsafe-perm \
     && mkdir -p /build/release/data/config \
     && mkdir -p /build/release/data/db \
     && mkdir -p /build/release/data/images \
@@ -24,7 +25,8 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs-legacy \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /build/release /app

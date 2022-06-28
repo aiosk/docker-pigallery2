@@ -13,7 +13,7 @@ RUN ln -s /usr/local/bin/node /usr/local/sbin/node \
     && npm install --unsafe-perm
 
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy AS main
+FROM ghcr.io/linuxserver/baseimage-ubuntu:focal AS main
 WORKDIR /app
 ENV NODE_ENV=production \
     # overrides only the default value of the settings (the actualy value can be overwritten through config.json)
@@ -25,7 +25,6 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+cd /app
+exec \
+    s6-setuidgid abc node ./src/backend/index --expose-gc --config-path=/app/data/config/config.json

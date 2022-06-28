@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+# create custom folders and secure permissions
+mkdir -p /app/data/{config,db,tmp}
+chown -R abc:abc /app/data
+
+mkdir -p /app/demo/{config,db,tmp,images}
+chown -R abc:abc /app/demo/{config,db,tmp,images}

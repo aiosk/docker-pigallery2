@@ -24,7 +24,7 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
+    && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs-legacy \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /build/release /app

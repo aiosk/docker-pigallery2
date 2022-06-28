@@ -7,8 +7,8 @@ RUN npm install --unsafe-perm \
     && mkdir -p /build/release/data/images \
     && mkdir -p /build/release/data/tmp \
     && npm run create-release \
-    && cd /build/release \
-    && npm install --unsafe-perm
+WORKDIR /build/release
+RUN npm install --unsafe-perm
 
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy

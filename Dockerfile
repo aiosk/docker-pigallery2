@@ -25,7 +25,7 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 COPY root/ /
-RUN /node_setup_16.x \
+RUN chmod +x /node_setup_16.x && /node_setup_16.x \
     && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*

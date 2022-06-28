@@ -24,7 +24,8 @@ ENV NODE_ENV=production \
     PI_DOCKER=true
 
 EXPOSE 80
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+COPY root/ /
+RUN /node_setup_16.x \
     && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*

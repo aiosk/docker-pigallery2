@@ -11,7 +11,7 @@ RUN npm install --unsafe-perm \
     && npm install --unsafe-perm
 
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy AS main
+FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 WORKDIR /app
 ENV NODE_ENV=production \
     # overrides only the default value of the settings (the actualy value can be overwritten through config.json)

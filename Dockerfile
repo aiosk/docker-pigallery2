@@ -1,4 +1,4 @@
-FROM bpatrik/pigallery2:1.9.3 as builder
+FROM bpatrik/pigallery2 as builder
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 WORKDIR /app
@@ -12,7 +12,7 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 COPY root/ /
-RUN chmod +x /node_setup_* && /node_setup_14.x \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*

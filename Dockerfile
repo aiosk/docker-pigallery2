@@ -1,17 +1,6 @@
-FROM node:16-buster AS builder
-RUN git clone https://github.com/bpatrik/pigallery2.git /build
-WORKDIR /build
-RUN npm install --unsafe-perm \
-    && mkdir -p /build/release/data/config \
-    && mkdir -p /build/release/data/db \
-    && mkdir -p /build/release/data/images \
-    && mkdir -p /build/release/data/tmp \
-    && npm run create-release
-WORKDIR /build/release
-RUN npm install --unsafe-perm
+FROM bpatrik/pigallery2:1.9.3 as builder
 
-
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
+FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 WORKDIR /app
 ENV NODE_ENV=production \
     # overrides only the default value of the settings (the actualy value can be overwritten through config.json)
@@ -23,11 +12,11 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 COPY root/ /
-RUN chmod +x /node_setup_16.x && /node_setup_16.x \
+RUN chmod +x /node_setup_* && /node_setup_14.x \
     && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*
-COPY --from=builder /build/release /app
+COPY --from=builder /app /app
 VOLUME ["/app/data/config", "/app/data/db", "/app/data/images", "/app/data/tmp"]
 HEALTHCHECK --interval=40s --timeout=30s --retries=3 --start-period=60s \
   CMD wget --quiet --tries=1 --no-check-certificate --spider \

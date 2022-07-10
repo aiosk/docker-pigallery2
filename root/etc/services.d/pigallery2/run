@@ -6,6 +6,6 @@ if [ -z "$SQL_HOST" ]; then
         s6-setuidgid abc node ./src/backend/index --expose-gc --config-path=/app/data/config/config.json
 else
     exec \
-        s6-setuidgid abc bin/wait-for $SQL_HOST:3306 -- --Server-Database-mysql-host=$SQL_HOST --Server-Database-mysql-username=$SQL_USER --Server-Database-mysql-password=$SQL_PASSWORD --Server-Database-mysql-database=$SQL_DB
+        s6-setuidgid abc node ./src/backend/index --expose-gc --config-path=/app/data/config/config.json --Server-Database-mysql-host=$SQL_HOST --Server-Database-mysql-username=$SQL_USER --Server-Database-mysql-password=$SQL_PASSWORD --Server-Database-mysql-database=$SQL_DB
 fi
 

@@ -1,4 +1,4 @@
-FROM bpatrik/pigallery2 as builder
+FROM bpatrik/pigallery2:nightly-debian-buster as builder
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 WORKDIR /app

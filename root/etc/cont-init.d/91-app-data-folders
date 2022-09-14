@@ -2,7 +2,7 @@
 
 # create custom folders and secure permissions
 mkdir -p /app/data/{config,db,tmp}
-chown -R abc:abc /app/data
+chown -R abc:abc /app/data/{config,db,tmp}
 
 mkdir -p /app/demo/{config,db,tmp}
 chown -R abc:abc /app/demo/{config,db,tmp}

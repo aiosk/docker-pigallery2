@@ -1,4 +1,4 @@
-FROM bpatrik/pigallery2:1.9.3 as builder
+FROM bpatrik/pigallery2:1.9.5 as builder
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 WORKDIR /app

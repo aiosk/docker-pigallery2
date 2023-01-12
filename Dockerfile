@@ -12,7 +12,7 @@ ENV NODE_ENV=production \
 
 EXPOSE 80
 COPY root/ /
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y --no-install-recommends ca-certificates wget ffmpeg nodejs \
     && apt-get clean -q -y \
     && rm -rf /var/lib/apt/lists/*

@@ -13,7 +13,7 @@ docker run -d \
   --publish=80:80 \
   --volume /path/to/config:/app/data/config \
   --volume /path/to/tmp:/app/data/tmp \
-  --volume db-data:/app/data/db \
+  --volume /path/to/db:/app/data/db \
   --volume /path/to/images:/app/data/images:ro \
   --restart unless-stopped \
   ghcr.io/aiosk/pigallery2
